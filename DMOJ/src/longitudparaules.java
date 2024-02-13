@@ -12,8 +12,9 @@ public class longitudparaules {
 
         int cantidadPMAXrev = 0;
         int cantidadPMINrev = 100;
-        int posPMAX;
-        int posPMIN;
+        int posPMAX = 0;
+        int posPMIN = 0;
+        int posPLONG = -1;
         for (int i = 0; i < cPalabras; i++) {
             char[] palabra = palabras[i].toCharArray();
             if (palabra.length > cantidadPMAXrev) {
@@ -24,6 +25,16 @@ public class longitudparaules {
                 cantidadPMINrev = palabra.length;
                 posPMIN = i;
             }
+            if (palabra.length == maxLongitud){
+                posPLONG = i;
+            }
         }
+        System.out.println("La paraula més llarga és: " + palabras[posPMAX] + " (" + palabras[posPMAX].length() + " lletres).");
+        System.out.println("La paraula més curta és: " + palabras[posPMIN] + " (" + palabras[posPMIN].length() + " lletres).");
+        System.out.println(
+            ((posPLONG > -1) ?
+            "La paraula de longitud " + maxLongitud + " que s'ha trobat és: " + palabras[posPLONG] :
+            "No s'ha trobat cap paraula de longitud " + maxLongitud + ".")
+        );
     }
 }
