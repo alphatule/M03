@@ -1,15 +1,23 @@
+import java.util.Locale;
 import java.util.Scanner;
-
 public class extracciodenumeros {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        sc.useLocale(Locale.ENGLISH);
 
-        for (int i = 0; i < 8; i++) {
+        String palabra = sc.nextLine();
 
+        int[] numeros = new int[4];
+        int count = 0;
+
+        for (int i = 1; i < palabra.length(); i=i+2) {
+            numeros[count] = Character.getNumericValue(palabra.charAt(i));;
+            count++;
         }
-
-        // char[] hola = new char[] sc.nextLine().toCharArray();
-
-        // System.out.println( sc.nextInt() + sc.nextInt() + sc.nextInt() + sc.nextInt() );
+        int calculo = 0;
+        for (int i = 0; i < numeros.length; i++) {
+            calculo = calculo + numeros[i];
+        }
+        System.out.println(calculo);
     }
 }
