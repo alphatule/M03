@@ -1,23 +1,28 @@
+import java.util.Locale;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println(twoValuesAreZero(2,3));
+        Scanner sc = new Scanner(System.in);
+        sc.useLocale(Locale.ENGLISH);
+
+        int n = sc.nextInt();
+        if (n < 2) System.out.println(n);
+        else {
+
+        }
+        System.out.println(fib(n, 2, 0, 1));
 
     }
-    public static String twoValuesAreZero(int num1, int num2){
-        String info = "";
 
-        if(num1 == 0){
-            if(num2 == 0){
-                info = "The two values are zero!";
-            }
-            else{
-                info = "The second value is not zero.";
-            }
-        }
-        else{
-            info = "The first value is not zero.";
-        }
 
-        return info;
+    // n es
+    // i es
+    // a es el numero penultimo de la secuencia en la que estamos
+    // b es el numero ultimo de la secuencia en la que estamos
+
+    private static int fib(int n, int i, int a, int b){
+        if (n == i) return a+b;
+        else return fib(n, i+1, b, a+b);
     }
 }
