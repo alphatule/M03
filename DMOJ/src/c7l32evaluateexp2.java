@@ -13,10 +13,10 @@ public class c7l32evaluateexp2 {
 
 
 
-    // 123*456+789*12
+    // 123*456 + 789*12
     // 56.088 + 9468
 
-    // 65.556  <---- RESULTADO
+    // 65.556
     private static int evaluate2(String expresion){
         int posicionUltimaSuma = expresion.lastIndexOf("+");
         int posicionUltimaMulti = expresion.lastIndexOf("*");
@@ -47,23 +47,14 @@ public class c7l32evaluateexp2 {
                 String[] sumas = expresion.split("\\+"); // ["123*456", "789*12"]
                 for (int i = 0; i < sumas.length; i++) {
                     int posicionUltimaMultiDelSplit = sumas[i].lastIndexOf("*");
-                    if (posicionUltimaMultiDelSplit == -1){
-                        // En caso de que sea un numero sin operaciones
-                    } else {
+                    if (posicionUltimaMultiDelSplit != -1){
                         // Aqui tenemos varios numeros con diferentes multiplicaciones "123*456"
-                        String[] multiplicaciones = sumas[i].split("\\*"); // ["123", "456"] // ["789", "12"]
-                        int resultado = 1;
-                        for (String multiplicacione : multiplicaciones) {
-                            resultado *= Integer.parseInt(multiplicacione);
-                        }
-                        sumas[i] = Integer.toString(resultado);
+                        sumas[i] = String.valueOf(evaluate2(sumas[i]));
                     }
                 }
-//                int parar = 0;
-                // sumas = ["56.088", "9468"]
                 int resultadoFinal = 0;
-                for (String suma : sumas) {
-                    resultadoFinal += Integer.parseInt(suma);
+                for (int i = 0; i < sumas.length; i++) {
+                    resultadoFinal += evaluate2(sumas[i]);
                 }
                 return resultadoFinal;
             }
