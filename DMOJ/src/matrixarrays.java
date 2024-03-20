@@ -9,20 +9,24 @@ public class matrixarrays {
         int columnas = sc.nextInt();
         int[][] matriz = new int[filas][columnas];
 
-        int count0 = 0;
-        int count1 = 0;
-
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
                 matriz[i][j] = sc.nextInt();
-                if (matriz[i][j] == 0) {
-                    count0++;
-                } else if (matriz[i][j] == 1) {
-                    count1++;
-                }
             }
         }
-        System.out.println(count0 + " " + count1);
 
+        int numeroFilasMirar = sc.nextInt();
+        int[][] coordsAMirar = new int[numeroFilasMirar][2];
+        for (int i = 0; i < numeroFilasMirar; i++) {
+            for (int j = 0; j < 2; j++) {
+                coordsAMirar[i][j] = sc.nextInt();
+            }
+        }
+        int numerosASumar = 0;
+
+        for (int i = 0; i < numeroFilasMirar; i++) {
+            if (coordsAMirar[i][0] < filas && coordsAMirar[i][1] < columnas) numerosASumar += matriz[coordsAMirar[i][0]][coordsAMirar[i][1]];
+        }
+        System.out.println(numerosASumar);
     }
 }

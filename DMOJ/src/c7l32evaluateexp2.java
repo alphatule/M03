@@ -20,24 +20,18 @@ public class c7l32evaluateexp2 {
     private static int evaluate2(String expresion){
         int posicionUltimaSuma = expresion.lastIndexOf("+");
         int posicionUltimaMulti = expresion.lastIndexOf("*");
-        if (posicionUltimaSuma == -1 && posicionUltimaMulti == -1){
-            // Caso BASE
+        if (posicionUltimaSuma == -1 && posicionUltimaMulti == -1){// Caso BASE
             return Integer.parseInt(expresion);
-        } else {
-            // CASO RECURSIVO
-            if (posicionUltimaSuma == -1) {
-                // AQUI ENTRAMOS SI SOLAMENTE HAY MULTIPLICACIONES
-                int resultat = 1;
-                // en caso de que no haya sumas, pero si multiplicaciones
+        } else {// CASO RECURSIVO
+            if (posicionUltimaSuma == -1) {// AQUI ENTRAMOS SI SOLAMENTE HAY MULTIPLICACIONES
+                int resultat = 1;// en caso de que no haya sumas, pero si multiplicaciones
                 String[] multiplicaciones = expresion.split("\\*"); // ["123", "456"] // ["789", "12"]
                 for (String s : multiplicaciones) {
                     resultat *= Integer.parseInt(s);
                 }
                 return resultat;
-            } else if (posicionUltimaMulti == -1){
-                // AQUI ENTRAMOS SI SOLAMENTE HAY SUMAS
-                int resultat = 0;
-                // en caso de que no haya sumas, pero si multiplicaciones
+            } else if (posicionUltimaMulti == -1){// AQUI ENTRAMOS SI SOLAMENTE HAY SUMAS
+                int resultat = 0;// en caso de que no haya sumas, pero si multiplicaciones
                 String[] sumas = expresion.split("\\+"); // ["56.088", "9468"]
                 for (String s : sumas) {
                     resultat += Integer.parseInt(s);
@@ -47,8 +41,7 @@ public class c7l32evaluateexp2 {
                 String[] sumas = expresion.split("\\+"); // ["123*456", "789*12"]
                 for (int i = 0; i < sumas.length; i++) {
                     int posicionUltimaMultiDelSplit = sumas[i].lastIndexOf("*");
-                    if (posicionUltimaMultiDelSplit != -1){
-                        // Aqui tenemos varios numeros con diferentes multiplicaciones "123*456"
+                    if (posicionUltimaMultiDelSplit != -1){// Aqui tenemos varios numeros con diferentes multiplicaciones "123*456"
                         sumas[i] = String.valueOf(evaluate2(sumas[i]));
                     }
                 }
